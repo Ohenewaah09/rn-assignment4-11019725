@@ -1,17 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import Cards from './Cards';
 
 
-
-export default function Home(){
+const Home = ({ route }) => {
+  const { name, email } = route.params;
     return(
         <View style={styles.container}>
           <ScrollView>
           <View style={styles.profileContainer}>
             <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>Adaiah Tsorblewu</Text>
-            <Text style={styles.profileEmail}>ohenewaahedinam804@gmail.com</Text>
+              <Text style={styles.profileName}> {name}</Text>
+              <Text style={styles.profileEmail}> {email}</Text>
             </View>
                
                 <View>
@@ -28,10 +29,17 @@ export default function Home(){
                 </View>
                 </View>
 
-                <View>
-                  <Text>Featured Jobs</Text>
-                  <Text>See All </Text>
+                <View style={styles.jobSection}>
+                  <Text style={styles.jobText}>Featured Jobs</Text>
+                  <Text style={styles.allJobs}>See All </Text>
                 </View>
+                <Cards/>
+
+                <View style={styles.jobSection}>
+                  <Text style={styles.jobText}>Popular Jobs</Text>
+                  <Text style={styles.allJobs}>See All </Text>
+                </View>
+
           </ScrollView>
       <StatusBar style="auto" />
     </View>
@@ -39,26 +47,31 @@ export default function Home(){
     
 }
 
+export default Home;
+
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
+      //alignItems: 'center',
       justifyContent: 'center',
+    
     },
     profileImage:{
       width: 48,
       height:48,
       marginTop: 10,
-      borderRadius:1000
+      borderRadius:1000,
+
     },
     profileContainer:{
       marginVertical:60,
       flexDirection:'row',
+      marginLeft: 25
     },
     profileInfo:{
-      marginRight:10
+      marginRight:20
     },
     profileName:{
       fontSize:26,
@@ -71,6 +84,7 @@ const styles = StyleSheet.create({
 
     searchContainer:{
      flexDirection: 'row',
+     marginLeft:30
     },
     search_Text:{
       padding:10,
@@ -101,5 +115,20 @@ const styles = StyleSheet.create({
       marginTop: 3,
       marginLeft:10
      },
+     jobText:{
+      fontWeight:'bold',
+      fontSize: 18
+     },
+     allJobs:{
+      fontSize: 12,
+      color:'#BEBEBE'
+     },
+     jobSection:{
+      flexDirection: 'row',
+      justifyContent:'space-between',
+      marginTop: 30,
+      marginLeft:30,
+      marginRight:30
+     }
   });
   

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button } from 'react-native';
 
 
     
@@ -18,7 +18,7 @@ export default function Login() {
             return;
         }
 
-        navigation.navigate('Home');
+        navigation.navigate('Home', { name, email });
     };
 
 
@@ -49,9 +49,8 @@ export default function Login() {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonText}>Log in</Text>
-                    </TouchableOpacity>
+                <Button title="Login" onPress={handleLogin} style={styles.button}/>
+
                 </View>
             <View style={styles.line}>
                 <Text style={styles.continueText}>or continue with</Text>  
@@ -138,15 +137,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '100%',
         alignItems: 'center',
-        paddingHorizontal: 0,
+        paddingHorizontal: 40,
         marginTop: 20,
         
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign:'center'
     },
 
    
