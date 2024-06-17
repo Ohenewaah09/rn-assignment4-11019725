@@ -1,14 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
-const handleLogin = () => {
-    // Add your login handling code here
-};
+
+    
 
 export default function Login() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const navigation = useNavigation();
+    
+
+    const handleLogin = () => {
+        if (email === '' || name === '') {
+            Alert.alert('Error', 'Please fill in both fields');
+            return;
+        }
+
+        navigation.navigate('Home');
+    };
+
 
     return (
         <View style={styles.container}>
@@ -22,8 +34,8 @@ export default function Login() {
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholder='Name'
-                        value={password}
-                        onChangeText={setPassword}
+                        value={name}
+                        onChangeText={setName}
                         style={styles.Input}
                     />
                     <TextInput
@@ -41,7 +53,22 @@ export default function Login() {
                         <Text style={styles.buttonText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+            <View style={styles.line}>
+                <Text style={styles.continueText}>or continue with</Text>  
             </View>
+
+            <View style={styles.socialImage}>
+            <Image source={require("../assets/appleLogo.png")} style={styles.socialsImage}/>
+            <Image source={require("../assets/googleLogo.png")} style={styles.socialImage}/>
+            <Image source={require("../assets/facebook.png")} style={styles.socialImage}/>
+            </View>
+
+
+            <View>
+                <Text style={styles.continueText}>Haven't an account?  <Text style={styles.RegisterText}>Register</Text></Text>
+            </View>
+            </View>
+            
             <StatusBar style="auto" />
         </View>
     );
@@ -55,8 +82,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     Status_Bar: {
+        flex:1,
         width: '100%',
-        alignItems: 'center',
+       marginTop:70,
         paddingHorizontal: 20,
     },
     waveImage: {
@@ -67,29 +95,28 @@ const styles = StyleSheet.create({
         marginTop: 50,
         fontSize: 34,
         fontWeight: 'bold',
-        color: '#1c4966',
-        textAlign: 'center',
+        color: '#356899',
     },
     welcome_sect: {
-        alignItems: 'center',
         marginBottom: 30,
     },
     heading_sec: {
         fontSize: 29,
         fontWeight: 'bold',
         marginBottom: 10,
-        textAlign: 'center',
+        
     },
     heading_third: {
         fontSize: 20,
-        marginTop: 10,
+        marginTop: 5,
+        marginBottom:20,
         marginBottom: 10,
         color: '#BEBEBE',
-        textAlign: 'center',
+       
     },
     inputContainer: {
         width: '100%',
-        paddingHorizontal: 20,
+        paddingHorizontal: 0,
     },
     Input: {
         borderColor: '#BEBEBE',
@@ -100,23 +127,54 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     button: {
-        backgroundColor: '#1c4966',
+        backgroundColor: '#356899',
         color: 'white',
         marginTop: 20,
-        padding: 15,
-        borderRadius: 16,
+        padding: 18,
+        borderRadius: 6,
         alignItems: 'center',
         width: '100%',
     },
     buttonContainer: {
         width: '100%',
         alignItems: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 0,
         marginTop: 20,
+        
     },
     buttonText: {
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
+        textAlign:'center'
     },
+
+   
+    continueText:{
+        color: '#555',
+        textAlign: 'center',
+        marginTop: 20
+        
+    },
+
+    socialImage:{
+        width:30,
+        height:30,
+        marginTop:10,
+        flexDirection:'row',
+        marginHorizontal: 30,
+        alignItems: 'center'
+    },
+    socialsImage:{
+        width:40,
+        height:40,
+        marginTop:10,
+        flexDirection:'row',
+        marginHorizontal: 30,
+        alignItems: 'center'
+    },
+
+    RegisterText:{
+        color: '#356899'
+    }
 });
