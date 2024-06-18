@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image,TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import Cards from './Cards';
-
+import Cards from './FeaturedJobs';
+import Card from './PopularJobs';
 
 const Home = ({ route }) => {
   const { name, email } = route.params;
@@ -25,7 +25,9 @@ const Home = ({ route }) => {
                   <TextInput placeholder='Search a job or position' placeholderTextColor={'#BEBEBE'} style={styles.TextInput}/>
                 </View>
                 <View>
-                <Image source={require('../assets/Slider.png')} style={styles.SliderImage} />
+                  <TouchableOpacity>
+                  <Image source={require('../assets/Slider.png')} style={styles.SliderImage} />
+                  </TouchableOpacity>
                 </View>
                 </View>
 
@@ -34,13 +36,15 @@ const Home = ({ route }) => {
                   <Text style={styles.allJobs}>See All </Text>
                 </View>
                 <Cards/>
-
                 <View style={styles.jobSection}>
                   <Text style={styles.jobText}>Popular Jobs</Text>
                   <Text style={styles.allJobs}>See All </Text>
                 </View>
+                <Card/>
 
           </ScrollView>
+          <Cards/>
+          
       <StatusBar style="auto" />
     </View>
     );
@@ -53,7 +57,7 @@ export default Home;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#f6f6f6',
       //alignItems: 'center',
       justifyContent: 'center',
     

@@ -49,8 +49,9 @@ export default function Login() {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                <Button title="Login" onPress={handleLogin} style={styles.button}/>
-
+                    <TouchableOpacity onPress={handleLogin} style={styles.button}>
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity>
                 </View>
             <View style={styles.line}>
                 <Text style={styles.continueText}>or continue with</Text>  
@@ -127,19 +128,22 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#356899',
-        color: 'white',
-        marginTop: 20,
-        padding: 18,
+        paddingVertical: 15,
+        paddingHorizontal: 148,
         borderRadius: 6,
         alignItems: 'center',
-        width: '100%',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     buttonContainer: {
         width: '100%',
         alignItems: 'center',
-        paddingHorizontal: 40,
         marginTop: 20,
-        
     },
 
    

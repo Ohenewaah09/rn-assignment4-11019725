@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
 const styles = StyleSheet.create({
   container: {
     
-    backgroundColor: '#fff',
+    backgroundColor: '#f6f6f6',
     alignItems: 'center',
     justifyContent: 'center',
   },
